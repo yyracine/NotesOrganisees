@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" id="themeColor" />
+  <title>Organisateur de notes de reunion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu principal</a>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="badge">Propulse par DeepSeek</span>
+        <h1>Organisateur de notes de reunion</h1>
+        <p>Collez vos notes brutes, laissez l'IA les structurer, puis exportez en PDF.</p>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Basculer le theme clair/sombre">
+        <span class="theme-icon" aria-hidden="true">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="card" aria-labelledby="notesHeading">
+      <div class="card-head">
+        <h2 id="notesHeading">1. Vos notes brutes</h2>
+      </div>
+
+      <div id="dropzone" class="dropzone" role="button" tabindex="0" aria-label="Zone de depot de fichier">
+        <div class="dropzone-icon" aria-hidden="true">📄</div>
+        <p class="dropzone-title">Glissez-deposez un fichier ici</p>
+        <p class="dropzone-sub">.txt, .md, .csv, .log, .json, .docx, .pdf — max 5 Mo</p>
+        <p class="muted">ou</p>
+        <label class="btn ghost file-btn" for="fileInput">Choisir un fichier</label>
+        <input type="file" id="fileInput" accept=".txt,.md,.csv,.log,.json,.docx,.pdf" hidden />
+        <span id="importStatus" class="status" aria-live="polite"></span>
+      </div>
+
+      <label class="field-label" for="notes">Notes</label>
+      <textarea id="notes" rows="12" name="notes" autocomplete="off" spellcheck="false" placeholder="Collez ici vos notes de reunion (texte libre, puces, transcription…) ou importez un fichier."></textarea>
+
+      <div class="actions">
+        <button id="btnOrganize" class="btn primary" type="button">Organiser avec l'IA</button>
+        <span id="status" class="status" aria-live="polite"></span>
+      </div>
+    </section>
+
+    <section class="card" id="resultCard" hidden aria-labelledby="resultHeading">
+      <div class="card-head">
+        <h2 id="resultHeading">2. Compte-rendu structure (modifiable)</h2>
+      </div>
+      <div id="result" class="result"></div>
+      <div class="actions">
+        <button id="btnPdf" class="btn success" type="button">Telecharger en PDF</button>
+        <button id="btnDocx" class="btn primary" type="button">Telecharger en DOCX</button>
+        <button id="btnReset" class="btn ghost" type="button">Reinitialiser</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
