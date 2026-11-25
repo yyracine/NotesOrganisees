@@ -4,3 +4,8 @@ __pycache__/
 .venv/
 .npx-cache/
 generated_documents/
+# PDF produits par Reliure (convertisseur EPUB → PDF), livrés à côté des EPUB
+livres-pdf/
+# Livres d'essai sous droits et captures de contrôle produites lors des tests
+*.epub
+*.png
